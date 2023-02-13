@@ -38,16 +38,8 @@ body:
 
   - type: textarea
     attributes:
-      label: Output of `/version FileCleaner`
+      label: Output of `/version HidemFrames`
       description: "Upload a screenshot or copy the text from the message"
-    validations:
-      required: true
-
-  - type: textarea
-    attributes:
-      label: FileCleaner config.yml
-      description: "Please copy and paste your config.yml to the text box below"
-      render: yaml
     validations:
       required: true
 
