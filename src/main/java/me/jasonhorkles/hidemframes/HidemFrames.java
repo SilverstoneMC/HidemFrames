@@ -4,7 +4,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @SuppressWarnings({"unused", "DataFlowIssue"})
-public class HidemFrame extends JavaPlugin implements Listener {
+public class HidemFrames extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         getCommand("hideitemframe").setExecutor(new Events(this));
