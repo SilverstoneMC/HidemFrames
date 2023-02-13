@@ -9,9 +9,11 @@ api-version: 1.18
 commands:
   hideitemframe:
     description: "Hide item frames"
+    permission: hidemframe.hideitemframe
   
   masshideitemframes:
     description: "Hide multiple item frames quickly"
+    permission: hidemframe.masshideitemframe
 
 permissions:
   hidemframe.hideitemframe:
