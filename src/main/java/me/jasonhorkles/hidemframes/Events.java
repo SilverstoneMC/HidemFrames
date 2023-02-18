@@ -17,7 +17,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 public record Events(JavaPlugin plugin) implements CommandExecutor, Listener {
-
     private static final ArrayList<Player> hidingItemFrame = new ArrayList<>();
     private static final ArrayList<Player> dontAutoRemovePlayer = new ArrayList<>();
 
@@ -30,19 +29,21 @@ public record Events(JavaPlugin plugin) implements CommandExecutor, Listener {
         switch (cmd.getName().toLowerCase()) {
             case "hideitemframe" -> {
                 if (!hidingItemFrame.contains(player)) {
+                    player.sendMessage(Component.text(
+                            "Place or rotate the item in the Item Frame that you'd like to make invisible.")
+                        .color(NamedTextColor.DARK_GREEN));
+                    
                     hidingItemFrame.add(player);
                     BukkitRunnable task = new BukkitRunnable() {
                         @Override
                         public void run() {
                             hidingItemFrame.remove(player);
+                            player.sendMessage(
+                                Component.text("Item Frame hiding timed out.").color(NamedTextColor.RED));
                         }
                     };
                     task.runTaskLaterAsynchronously(plugin, 600);
                 }
-
-                player.sendMessage(Component.text(
-                        "Place or rotate the item in the Item Frame that you'd like to make invisible.")
-                    .color(NamedTextColor.DARK_GREEN));
             }
 
             case "masshideitemframes" -> {
