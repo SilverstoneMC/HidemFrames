@@ -32,14 +32,16 @@ public record Events(JavaPlugin plugin) implements CommandExecutor, Listener {
                     player.sendMessage(Component.text(
                             "Place or rotate the item in the Item Frame that you'd like to make invisible.")
                         .color(NamedTextColor.DARK_GREEN));
-                    
+
                     hidingItemFrame.add(player);
                     BukkitRunnable task = new BukkitRunnable() {
                         @Override
                         public void run() {
-                            hidingItemFrame.remove(player);
-                            player.sendMessage(
-                                Component.text("Item Frame hiding timed out.").color(NamedTextColor.RED));
+                            if (hidingItemFrame.contains(player)) {
+                                hidingItemFrame.remove(player);
+                                player.sendMessage(
+                                    Component.text("Item Frame hiding timed out.").color(NamedTextColor.RED));
+                            }
                         }
                     };
                     task.runTaskLaterAsynchronously(plugin, 600);
